@@ -9,22 +9,34 @@ public class Movement : MonoBehaviour
     public float multiplicador = 5f;
 
     private Rigidbody2D rb;
-    // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Hola mundo");
 
         rb = GetComponent<Rigidbody2D>();
+
+        transform.position = new Vector3(-9, -1, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        /* Flip */
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        /* Movimiento */
         float movTeclas = Input.GetAxis("Horizontal");
 
         float miDeltaTime = Time.deltaTime;
 
-        rb.velocity = new Vector2(movTeclas*multiplicador, rb.velocity.y);
+        rb.velocity = new Vector2(movTeclas * multiplicador, rb.velocity.y);
 
     }
 
