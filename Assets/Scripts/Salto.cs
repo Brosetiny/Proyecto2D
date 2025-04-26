@@ -10,6 +10,7 @@ public class Salto : MonoBehaviour
 
     private bool puedosaltar = true;
 
+    private bool activaSaltoFixed = false;
 
     void Start()
     {
@@ -34,12 +35,24 @@ public class Salto : MonoBehaviour
         /* Salto*/
         if (Input.GetKeyDown(KeyCode.Space) && puedosaltar==true)
         {
-            rb.AddForce(
-                new Vector2(0, multiplicadorsalto),
-                ForceMode2D.Impulse);
+
+            activaSaltoFixed = true;
+           
         }
 
     }
-   
+
+    void FixedUpdate()
+    {
+        if(activaSaltoFixed == true){
+         rb.AddForce(
+                new Vector2(0, multiplicadorsalto),
+                ForceMode2D.Impulse);
+
+                activaSaltoFixed=false;
+        }
+
+    }
+
 
 }

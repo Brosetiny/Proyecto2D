@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
+using JetBrains.Annotations;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -13,7 +14,13 @@ public class Movement : MonoBehaviour
 
     private Animator animatorController;
 
+    public bool mirandoDcha = true;
+
     GameObject respawn;
+
+    float movTeclas;
+
+    bool soyazul;
 
     void Start()
     {
@@ -33,22 +40,22 @@ public class Movement : MonoBehaviour
 
         if(GameManager.muerto == true) return;
         
-        /* Movimiento */
-        float movTeclas = Input.GetAxis("Horizontal");
+        // Movimiento
+        movTeclas = Input.GetAxis("Horizontal");
 
         float miDeltaTime = Time.deltaTime;
 
-        rb.velocity = new Vector2(movTeclas * multiplicador, rb.velocity.y);
-
-        /* Flip */
+        // Flip 
         if (movTeclas < 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
+            mirandoDcha = false;
         }
 
         if (movTeclas > 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
+            mirandoDcha = true;
         }
 
         //Animacion walking
@@ -79,6 +86,13 @@ public class Movement : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+
+        rb.velocity = new Vector2(movTeclas * multiplicador, rb.velocity.y);
+
+    }
+
     public void Respawnear()
     {
         Debug.Log(GameManager.vidas + " vidas");
@@ -90,4 +104,16 @@ public class Movement : MonoBehaviour
         transform.position = respawn.transform.position;
     }
 
+
+    public void CambiarColor(){
+
+        if(soyazul){
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+        soyazul = false;
+        }else{
+            this.GetComponent<SpriteRenderer>().color = Color.blue;
+            soyazul = true;
+        }
+
+    }
 }
