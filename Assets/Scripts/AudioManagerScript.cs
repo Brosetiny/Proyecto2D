@@ -20,6 +20,10 @@ public class AudioManagerScript : MonoBehaviour
 
     public static AudioManagerScript Instance;
 
+    public GameObject musicObj;
+
+    AudioSource audioMusic;
+
     void Awake(){
         
         if(Instance != null && Instance != this){
@@ -38,9 +42,12 @@ public class AudioManagerScript : MonoBehaviour
     {
         
         _audioSource = this.GetComponent<AudioSource>();
-        _audioSource.clip = bandaSonora;
-        _audioSource.loop = true;
-        _audioSource.Play();
+      
+        audioMusic = musicObj.GetComponent<AudioSource>();
+        audioMusic.clip = bandaSonora;
+        audioMusic.loop = true;
+        audioMusic.Play();
+        audioMusic.volume = 0.02f;
 
     }
 
