@@ -31,8 +31,8 @@ private Movement movRogue;
 
         if(col.name == "Rogue"){
 
+          AudioManagerScript.Instance.SonarClip(AudioManagerScript.Instance.fxDead);
           movRogue.Respawnear(); 
-
         }
 
 

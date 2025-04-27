@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
+
     public static int vidas = 3;
 
     public static bool muerto = false;
@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
-       Debug.Log("puntos:" + puntos); 
 
-        Debug.Log("fantasmas asesinados:" + contadorfantasmas); 
+        Debug.Log("puntos:" + puntos);
+
+        Debug.Log("fantasmas asesinados:" + contadorfantasmas);
 
         vidasText.GetComponent<TextMeshProUGUI>().text = vidas.ToString();
 

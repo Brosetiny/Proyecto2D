@@ -73,7 +73,9 @@ public class Movement : MonoBehaviour
         //Limite abajo
 
         if (transform.position.y <= -7)
-        { Respawnear();
+        { 
+            Respawnear();
+            AudioManagerScript.Instance.SonarClip(AudioManagerScript.Instance.fxDead);
         }
 
         // 0 vidas

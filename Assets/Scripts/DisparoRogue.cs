@@ -19,6 +19,7 @@ public class DisparoRogue : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)){
 
             Instantiate(fuego, transform.position, Quaternion.identity);
+            AudioManagerScript.Instance.SonarClip(AudioManagerScript.Instance.fxFire);
 
         }
 

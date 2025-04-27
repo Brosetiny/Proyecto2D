@@ -21,10 +21,10 @@ public class MonedaScript : MonoBehaviour
     {
         
         if(col.name == "Rogue"){
+
             GameManager.puntos += 1;
-
-              monedaController.SetBool("monedaDestruir", true);
-
+            monedaController.SetBool("monedaDestruir", true);
+            AudioManagerScript.Instance.SonarClip(AudioManagerScript.Instance.fxCoin);
             Destroy(this.gameObject, 1.5f);
         }
     }
