@@ -47,7 +47,7 @@ public class AudioManagerScript : MonoBehaviour
         audioMusic.clip = bandaSonora;
         audioMusic.loop = true;
         audioMusic.Play();
-        audioMusic.volume = 0.02f;
+        audioMusic.volume = 0.1f;
 
     }
 
