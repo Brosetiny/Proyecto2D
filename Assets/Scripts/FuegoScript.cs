@@ -9,6 +9,11 @@ public class FuegoScript : MonoBehaviour
     GameObject rogue;
 
     bool bolaDcha = true;
+    bool bolaIzq = false;
+    bool bolaArribaDcha = false;
+    bool bolaArribaIzq = false;
+    bool bolaAbajoDcha = false;
+    bool bolaAbajoIzq = false;
 
     public float speedBala = 0.05f;
 
@@ -21,6 +26,11 @@ public class FuegoScript : MonoBehaviour
     {
        rogue = GameObject.Find("Rogue");
        bolaDcha = rogue.GetComponent<Movement>().mirandoDcha;
+       bolaIzq = rogue.GetComponent<Movement>().mirandoIzq;
+       bolaArribaDcha = rogue.GetComponent<Movement>().mirandoArribaDcha;
+       bolaAbajoDcha = rogue.GetComponent<Movement>().mirandoAbajoDcha;
+       bolaArribaIzq = rogue.GetComponent<Movement>().mirandoArribaIzq;
+       bolaAbajoIzq = rogue.GetComponent<Movement>().mirandoAbajoIzq;
        tiempopasado = Time.time;
     }
 
@@ -31,10 +41,23 @@ public class FuegoScript : MonoBehaviour
         if(bolaDcha){
             transform.Translate(speedBala*Time.deltaTime,0,0, Space.World);
         }
-        else{
+        if(bolaIzq){
             transform.Translate(speedBala*Time.deltaTime*-1,0,0, Space.World);
         }
+        if(bolaAbajoIzq){
+            transform.Translate(speedBala*Time.deltaTime*-1,speedBala*Time.deltaTime*-1,0, Space.World);
+        }
+        if(bolaArribaIzq){
+            transform.Translate(speedBala*Time.deltaTime*-1,speedBala*Time.deltaTime,0, Space.World);
+        }
+        if(bolaAbajoDcha){
+            transform.Translate(speedBala*Time.deltaTime,speedBala*Time.deltaTime*-1,0, Space.World);
+        }
+        if(bolaArribaDcha){
+            transform.Translate(speedBala*Time.deltaTime,speedBala*Time.deltaTime,0, Space.World);
+        }
 
+        
         if(Time.time >= tiempopasado + tiempoDes){
             Destroy(this.gameObject);
         }

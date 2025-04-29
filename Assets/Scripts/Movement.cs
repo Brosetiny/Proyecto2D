@@ -15,10 +15,17 @@ public class Movement : MonoBehaviour
     private Animator animatorController;
 
     public bool mirandoDcha = true;
+    public bool mirandoIzq = false;
+    public bool mirandoArribaDcha = false;
+    public bool mirandoArribaIzq = false;
+    public bool mirandoAbajoDcha = false;
+    public bool mirandoAbajoIzq = false;
 
     GameObject respawn;
 
     float movTeclas;
+
+    float movTeclasVert;
 
     bool soyazul;
 
@@ -43,21 +50,76 @@ public class Movement : MonoBehaviour
         // Movimiento
         movTeclas = Input.GetAxis("Horizontal");
 
+        movTeclasVert = Input.GetAxis("Vertical");
+
         float miDeltaTime = Time.deltaTime;
 
-        // Flip 
+        // Mirando izq
         if (movTeclas < 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
             mirandoDcha = false;
+            mirandoArribaDcha = false;
+            mirandoArribaIzq = false;
+            mirandoAbajoDcha = false;
+            mirandoAbajoIzq = false;
+            mirandoIzq = true;
         }
-
+        // Mirando der
         if (movTeclas > 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
             mirandoDcha = true;
+            mirandoArribaDcha = false;
+            mirandoArribaIzq = false;
+            mirandoAbajoDcha = false;
+            mirandoAbajoIzq = false;
+            mirandoIzq = false;
         }
-
+        //Mirando abajo izq
+         if ((movTeclas < 0) && (movTeclasVert<0))
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+            mirandoDcha = false;
+            mirandoArribaDcha = false;
+            mirandoArribaIzq = false;
+            mirandoAbajoDcha = false;
+            mirandoAbajoIzq = true;
+            mirandoIzq = false;
+        }
+        //Mirando arriba izq
+        if ((movTeclas < 0) && (movTeclasVert>0))
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+            mirandoDcha = false;
+            mirandoArribaDcha = false;
+            mirandoArribaIzq = true;
+            mirandoAbajoDcha = false;
+            mirandoAbajoIzq = false;
+            mirandoIzq = false;
+        }
+        //Mirando abajo der
+        if ((movTeclas > 0) && (movTeclasVert<0))
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+            mirandoDcha = false;
+            mirandoArribaDcha = false;
+            mirandoArribaIzq = false;
+            mirandoAbajoDcha = true;
+            mirandoAbajoIzq = false;
+            mirandoIzq = false;
+        }
+        //Mirando arriba der
+        if ((movTeclas > 0) && (movTeclasVert>0))
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+            mirandoDcha = false;
+            mirandoArribaDcha = true;
+            mirandoArribaIzq = false;
+            mirandoAbajoDcha = false;
+            mirandoAbajoIzq = false;
+            mirandoIzq = false;
+        }
         //Animacion walking
 
         if (movTeclas != 0)
